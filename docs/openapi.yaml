@@ -1,0 +1,126 @@
+swagger: "2.0"
+
+info:
+  title: Sample API
+  description: API description in Markdown.
+  version: 1.0.0
+
+paths:
+  /signup:
+    post:
+      summary: Create user
+      description: ""
+      operationId: createUser
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: body
+          name: body
+          description: The user object that needs to be added to the system
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: string
+        "429":
+          description: Too many requests
+  /login:
+    post:
+      summary: Logs user into the system
+      description: ""
+      operationId: login
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: body
+          name: body
+          description: The user object that needs to be added to the system
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: string
+        "429":
+          description: Too many requests
+  /transactions/create:
+    post:
+      summary: Create transaction
+      description: ""
+      operationId: createTransaction
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: The transaction object that needs to be added to the system
+          required: true
+          schema:
+            $ref: "#/definitions/Transaction"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: string
+        "429":
+          description: Too many requests
+      security:
+        - jwt: [ ]
+  /messages/send:
+    post:
+      summary: Send message
+      description: ""
+      operationId: sendMessage
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: The message object that needs to be added to the system
+          required: true
+          schema:
+            $ref: "#/definitions/Message"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: string
+        "429":
+          description: Too many requests
+      security:
+        - jwt: []
+
+definitions:
+  User:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  Transaction:
+    type: object
+    properties:
+      amount:
+        type: number
+      status:
+        type: string
+  Message:
+    type: object
+    properties:
+      text:
+        type: string
+
+securityDefinitions:
+  jwt:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: "JWT token must be provided in format 'Bearer <token>'."
