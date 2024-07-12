@@ -12,8 +12,8 @@ Follow these steps to run the Golang server along with PostgreSQL and Redis usin
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone git@github.com:mbbrv/gateway-go.git
+cd gateway-go
 ```
 
 ### Step 2: Run the Docker Compose
